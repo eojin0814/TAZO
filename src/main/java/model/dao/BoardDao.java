@@ -18,6 +18,7 @@ import model.Reservation;
 import model.ReservationDTO;
 import model.User;
 import model.BoardDTO;
+import model.BoardForUpdate;
 import model.CommentDTO;
 
 public class BoardDao {
@@ -43,6 +44,18 @@ public class BoardDao {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
+	
+	//승지
+		public int updateBoard(BoardForUpdate board) {
+			System.out.println("select one");
+			SqlSession sqlSession = sqlSessionFactory.openSession();
+			try {
+				return (int)sqlSession.selectOne(
+						namespace + ".updateBoard", board);	
+			} finally {
+				sqlSession.close();
+			}
+		}
 //	
 //	public List<BoardDTO> selectAll() {
 //		System.out.println("selectAll");

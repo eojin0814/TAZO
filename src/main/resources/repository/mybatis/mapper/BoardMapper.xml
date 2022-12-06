@@ -17,6 +17,12 @@
 	</sql>
 	
 	
+	<update id="updateBoard" timeout="10" parameterType="BoardForUpdate">
+		UPDATE BOARD
+		SET ARRIVAL=#{arrival},DEPARTURE=#{departure},ARRIVALTIME=#{arrivalTime},DEPARTURETIME=#{departureTime},HEADCOUNT=#{headCount},REALTIMESTATE=#{realtimeState}
+		WHERE BOARDID=#{boardId}
+	</update>
+	
 	<select id="selectAllBoard" resultType="BoardDTO">
 		SELECT <include refid="BaseColumns"/>
 		FROM BOARD

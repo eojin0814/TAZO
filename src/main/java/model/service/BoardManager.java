@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.BoardDTO;
+import model.BoardForUpdate;
 import model.CommentDTO;
 import model.CustomerDTO;
 import model.ReservationDTO;
@@ -116,6 +117,20 @@ public class BoardManager {
 		try {
 			//불러오기
 			boardDao.allowCustomerRequest(reservationId);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	//승지
+	public void updateBoard(BoardForUpdate board) throws SQLException, ExistingUserException {
+		System.out.println("Manager - allowCustomerRequest : " + board);
+		try {
+			//불러오기
+			boardDao.updateBoard(board);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -25,6 +25,12 @@ public class RequestMapping {
     public void initMapping() {
     	
     	//board
+    	//승지 추가
+    	//업데이트 페이지에서 넘어가는 페이지
+    	
+    	mappings.put("/board/update", new ForwardController("/driver/updateBoard.jsp"));
+    	mappings.put("/driver/update/board",new UpdateBoardController());
+    	
     	//board에 댓글 단거 처리하기
     	mappings.put("/board/comment", new SendBoardCommentController());
     	//운전자로 등록하기
@@ -40,7 +46,7 @@ public class RequestMapping {
     	mappings.put("/driver/myBoards", new ShowBoardsController());
     	//내 보드에서 수락하기
     	mappings.put("/board/allow", new AllowRequestController());
-    	mappings.put("/board/update", new UpdateBoardController());
+   
     	//board 클릭시 넘어가는 예약페이지
     	mappings.put("/reservation/view/init",  new SetReservationDetails());
     	//예약신청

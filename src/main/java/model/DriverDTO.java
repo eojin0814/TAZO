@@ -1,9 +1,5 @@
 package model;
 
-import java.util.Date;
-import java.util.List;
-
-
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
@@ -13,31 +9,25 @@ public class DriverDTO implements Serializable{
 	private String name;
 	private int gender;
 	private int age;
-	private String job;
+	private int job; //1 학생 2 직장인
 	private String phone;
 	private String password;
 	
-	@Override
-	public String toString() {
-		return "DriverDTO [carNumber=" + carNumber + ", license=" + license + ", driverName=" + driverName + "]";
-	}
-	
-
-	public DriverDTO(String driverName,int license, int carNumber) {
+	//driver에만 있는 정보
+	private int driverId; //pk로 자동으로 생성되도록
+	private String driverStrId; //실제 사용자가 로그인 할 때 입력하는 아이디(driverlogid)
+	private int carNumber;
+	private int license;
+	private String info;
+		
+	public DriverDTO(String name,int license, int carNumber) {
 		super();
 		this.carNumber = carNumber;
 		this.license = license;
-		this.driverName = driverName;
+		this.name = name;
 	}
-	//driver에만 있는 정보
-	private int driverId; //pk로 자동으로 생성되도록
-	private String driverStrId; //실제 사용자가 로그인 할 때 입력하는 아이디
-	private int carNumber;
-	private int license;
-	private String driverName;
-	private String info;
-
-	public DriverDTO(String driverStrId, String name, int gender, int age, String job, String phone, String password,
+	
+	public DriverDTO(String driverStrId, String name, int gender, int age, int job, String phone, String password,
 			String info) {
 		super();
 		this.name = name;
@@ -50,22 +40,6 @@ public class DriverDTO implements Serializable{
 		this.info = info;
 	}
 
-
-	public DriverDTO(String name, int gender, int age, String job, String phone, String password, int carNumber,
-			int license, String info) {
-		super();
-		this.name = name;
-		this.gender = gender;
-		this.age = age;
-		this.job = job;
-		this.phone = phone;
-		this.password = password;
-		this.carNumber = carNumber;
-		this.license = license;
-		this.info = info;
-	}
-
-
 	public String getInfo() {
 		return info;
 	}
@@ -73,15 +47,6 @@ public class DriverDTO implements Serializable{
 
 	public void setInfo(String info) {
 		this.info = info;
-	}
-
-
-	public String getDriverName() {
-		return driverName;
-	}
-
-	public void setDriverName(String driverName) {
-		this.driverName = driverName;
 	}
 
 	public DriverDTO(int driverId) {
@@ -94,7 +59,7 @@ public class DriverDTO implements Serializable{
 	}
 
 	//매칭을 위한 생성자
-	public DriverDTO(int gender, int age, String job) {
+	public DriverDTO(int gender, int age, int job) {
 		super();
 		this.gender = gender;
 		this.age = age;
@@ -102,8 +67,8 @@ public class DriverDTO implements Serializable{
 	}
 		
 	//전체 생성자
-	public DriverDTO(String name, int gender, int age, String job, String phone, String password, int driverId,
-			String driverStrId, int carNumber, int license) {
+	public DriverDTO(String name, int gender, int age, int job, String phone, String password, int driverId,
+			String driverStrId, int carNumber, int license, String info) {
 		super();
 		this.name = name;
 		this.gender = gender;
@@ -115,10 +80,11 @@ public class DriverDTO implements Serializable{
 		this.driverStrId = driverStrId;
 		this.carNumber = carNumber;
 		this.license = license;
+		this.info = info;
 	}
 		
 	//password, license 제외한 생성자 - 보여줘도 되는 나의 정보
-	public DriverDTO(String name, int gender, int age, String job, String phone, String driverStrId, int carNumber) {
+	public DriverDTO(String name, int gender, int age, int job, String phone, String driverStrId, int carNumber) {
 		super();
 		this.name = name;
 		this.gender = gender;
@@ -130,7 +96,7 @@ public class DriverDTO implements Serializable{
 	}
 	
 	
-	public DriverDTO(String driverStrId, String name, int gender, int age, String job, String phone, String password, int carNumber, int license) {
+	public DriverDTO(String driverStrId, String name, int gender, int age, int job, String phone, String password, int carNumber, int license) {
 		super();
 		this.driverStrId = driverStrId;
 		this.name = name;
@@ -141,6 +107,19 @@ public class DriverDTO implements Serializable{
 		this.password = password;
 		this.carNumber = carNumber;
 		this.license = license;
+	}
+
+	public DriverDTO(String name, int gender, int age, int job, String phone, String password, int carNumber, int license,
+			String info) {
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.job = job;
+		this.phone = phone;
+		this.password = password;
+		this.carNumber = carNumber;
+		this.license = license;
+		this.info = info;
 	}
 
 	public int getDriverId() {
@@ -193,10 +172,10 @@ public class DriverDTO implements Serializable{
 		this.age = age;
 	}
 
-	public String getJob() {
+	public int getJob() {
 		return job;
 	}
-	public void setJob(String job) {
+	public void setJob(int job) {
 		this.job = job;
 	}
 
@@ -229,12 +208,11 @@ public class DriverDTO implements Serializable{
 	public boolean isSameDriver(String driverStrid) {
         return this.driverStrId.equals(driverStrid);
     }
-
-//안 필요할 거 같음
-//	@Override
-//	public String toString() {
-//		return "Driver [DriverId=" + driverStrId + ", password=" + password + ", name=" + name +", phone="
-//				+ phone + ", gender=" + gender + " + "]";
-//	}	
+	
+	@Override
+	public String toString() {
+		return "Driver [DriverId=" + driverStrId + ", password=" + password + ", name=" + name +", phone="
+				+ phone + ", gender=" + gender + "carNumber=" + carNumber + ", license=" + license + ", driverName=" + name + "]";
+	}	
 	
 }

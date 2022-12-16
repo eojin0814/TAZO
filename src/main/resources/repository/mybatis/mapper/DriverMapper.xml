@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- 현재 폴더 경로와 일치한다 -->
+<mapper namespace="repository.mybatis.mapper.DriverMapper">
+	<cache />
+	
+	<insert id="createDriver" parameterType="Driver">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			SELECT driver_sequence.nextval AS id FROM DUAL
+		</selectKey>
+		 INSERT INTO DRIVER (driverId, carNumber, license, driverName, age, gender, driverStrId, job, phone, password, info)
+		 VALUES (#{id}, #{carNumber}, #{license}, #{name}, #{age}, #{gender}, #{driverStrId}, #{job}, #{phone}, #{password}, #{info})
+	</insert>
+	
+	<update id="updateDriver" parameterType="Driver">
+		 UPDATE DRIVER
+		 SET carNumber = #{carNumber}, license = #{license}, driverName = #{name}, age = #{age}, gender = #{gender}, 
+		      job = #{job}, phone = #{phone}, password = #{password}, info = #{info}
+		 WHERE driverStrId = #{driverStrId}
+	</update>
+	
+	<select id="findDriver" parameterType="String" resultType="Driver">
+		SELECT driverName AS name, gender, age, job, phone, password, carNumber, license, info
+		FROM DRIVER
+		WHERE driverStrId = #{driverStrId}
+	</select>
+	
+</mapper>

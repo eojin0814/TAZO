@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- 현재 폴더 경로와 일치한다 -->
+<mapper namespace="repository.mybatis.mapper.CustomerMapper">
+	<cache />
+	
+	<insert id="createCustomer" parameterType="Customer">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			SELECT customer_sequence.nextval AS id FROM DUAL
+		</selectKey>
+		 INSERT INTO CUSTOMER (customerId, name, gender, age, job, phone, password, customerstrId, info)
+		 VALUES (#{id}, #{name}, #{gender}, #{age}, #{job}, #{phone}, #{password}, #{strId}, #{info})
+	</insert>
+	
+	<update id="updateCustomer" parameterType="Customer">
+		 UPDATE CUSTOMER
+		 SET name = #{name}, gender = #{gender}, age = #{age}, 
+		      job = #{job}, phone = #{phone}, password = #{password}, customerstrId = #{strId}, info = #{info}
+		 WHERE customerId = #{id}
+	</update>
+	
+	<select id="findUser" parameterType="String" resultType="Customer">
+		SELECT name, gender, age, job, password, info
+		FROM CUSTOMER
+		WHERE customerStrId = #{strId}
+	</select>
+</mapper>

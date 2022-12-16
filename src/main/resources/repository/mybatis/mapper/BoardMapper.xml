@@ -47,7 +47,7 @@
 		<result column="HEADCOUNT" jdbcType="NUMERIC" property="headCount" />
 		<association column="DRIVERID" property="driver" javaType="DriverDTO" >
 			<id column="DRIVERID" property="driverId" />
-			<result column="DRIVERNAME" property="driverName" />
+			<result column="DRIVERNAME" property="name" />
 			<result column="LICENSE" property="license" />
 			<result column="CARNUMBER" property="carNumber" />	
 		</association>

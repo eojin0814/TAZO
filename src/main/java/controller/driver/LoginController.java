@@ -15,21 +15,21 @@ public class LoginController implements Controller {
 		
 		try {
 			// 모델에 로그인 처리를 위임
-			DriverManager manager = DriverManager.getInstance();
-			manager.login(driverStrId, password);
+			DriverManager dmg = DriverManager.getInstance();
+			dmg.login(driverStrId, password);
 	
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
-            session.setAttribute(DriverSessionUtils.DRIVER_SESSION_KEY, driverStrId);
+            session.setAttribute("driverStrId", driverStrId);
             
-            return "redirect:/driver/list";			
+            return "redirect:/driver";			
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시
 			 * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력
 			 */
             request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e);
-            return "/driver/loginForm.jsp";			
+            return "/driver/joinForm.jsp";			
 		}	
     }
 }

@@ -6,7 +6,8 @@
 	<typeAliases>
 		<typeAlias type="model.BoardDTO" alias="BoardDTO" />
 		<typeAlias type="model.Board" alias="Board" />
-		<typeAlias type="model.DriverDTO" alias="DriverDTO" />
+		<typeAlias type="model.CommentDTO" alias="Comment" />
+		<typeAlias type="model.DriverDTO" alias="Driver" />
 		<typeAlias type="model.CommentDTO" alias="CommentDTO" />
 		<typeAlias type="model.BoardForUpdate" alias="BoardForUpdate" />
 	</typeAliases>
@@ -23,5 +24,11 @@
 	</environments>
 	<mappers>
 		<mapper resource="repository/mybatis/mapper/BoardMapper.xml" />
+		<mapper resource="repository/mybatis/mapper/CustomerMapper.xml" />
+		<mapper resource="repository/mybatis/mapper/DriverMapper.xml" />
+		
+		<!-- interface로 정의했을때 -->
+		<mapper resource="repository.mybatis.mapper.CustomerMapper" />
+		<mapper resource="repository.mybatis.mapper.DriverMapper" />
 	</mappers>
 </configuration>

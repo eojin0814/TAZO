@@ -27,13 +27,14 @@ public class MatchingBasicController implements Controller {
 	            return "redirect:/user/login/form";		// login form 요청으로 redirect
 	        }
 		    //현재 유저 아이디 얻어오기
-		 	String userId = UserSessionUtils.getLoginUserId(request.getSession());		
+		 	String userId = UserSessionUtils.getLoginUserId(request.getSession());
+		 	
 		 	// 유저 정보 넘겨주기
 	    	MatchingManager manager = MatchingManager.getInstance();
 			List<Board> MatchingList = manager.findBasicBoardList(userId);
 			
 			// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
 			request.setAttribute("MatchingList", MatchingList);				
-			return "index.jsp";        
+			return "LocationMatching.jsp";        
 	    }
 }

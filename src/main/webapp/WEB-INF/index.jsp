@@ -209,32 +209,8 @@ function register(targetUri){
         </script>
         
         
-      <div class="container-xxl py-6 bg-white">
-         <div class="container bg-white">
-            <h2>타조 추천</h2>
-         </div>
-         
-         <div class="row g-4">
-                  <c:forEach var="MatchingList" items="${MatchingList}" varStatus="status">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="p-5">
-                                <h5 class="mb-3">${MatchingList.departure} -> ${MatchingList.arrival } </h5>
-                                <span>출발시간 : ${MatchingList.departureTime}</span>
-                                <p><span>도착시간 : ${MatchingList.arrivalTime}</span>
-                                <p><span>탐승 가능 인원 수 : ${MatchingList.headCount }</span>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-                 
-             </div>
-           
-
-
-
-       
-
-
+     
+     
         <!-- Service Start -->
         <div class="container-xxl py-6">
             <div class="container">

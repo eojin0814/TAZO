@@ -11,6 +11,7 @@ import controller.comm.*;
 import controller.customer.CustomerLoginController;
 import controller.customer.CustomerLogoutController;
 import controller.customer.RegisterCustomerController;
+import controller.matching.MatchingBasicController;
 import controller.matching.MatchingLocationController;
 import controller.reservation.CreateReservationController;
 import controller.reservation.ListReservationController;
@@ -49,9 +50,10 @@ public class RequestMapping {
     	//로그인 클릭시 넘어가는 페이지
     	mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
     	//검색창에 검색한 결과 보여주는 페이지
-    	 mappings.put("/customer/LocationMatching", new MatchingLocationController());
+    	mappings.put("/customer/LocationMatching", new MatchingLocationController());
+    	mappings.put("/customer/BasicMatching", new MatchingBasicController());
     	//로케이션 포워드 
-    	 mappings.put("/customer/locationMatching/Info", new ForwardController("/LocationMatching.jsp"));
+    	mappings.put("/customer/locationMatching/Info", new ForwardController("/LocationMatching.jsp"));
     	 
     	mappings.put("/customer/login", new CustomerLoginController());
     	mappings.put("/customer/logout", new CustomerLogoutController());

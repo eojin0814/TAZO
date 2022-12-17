@@ -142,14 +142,13 @@ public class MatchingDAO {
         
         String sql = "SELECT gender, job, age "
               + "FROM CUSTOMER "
-               + "WHERE CUSTOMERSTRID = ? ";
+               + "WHERE CUSTOMERID = ? ";
         
-        jdbcUtil.setSqlAndParameters(sql, new Object[]{userId});  
+        jdbcUtil.setSqlAndParameters(sql, new Object[]{"bin"});  
         try {      
             ResultSet rs = jdbcUtil.executeQuery();
 
               while (rs.next()) {  
-
               customer = new CustomerDTO( 
                     rs.getInt("gender"),
                     rs.getInt("age"),
@@ -165,32 +164,14 @@ public class MatchingDAO {
         int gender = customer.getGender();
         int job = customer.getJob();
         
-        String sql2 = "SELECT DRIVERID "
-              + "FROM DRIVER "
-              + "WHERE gender = ? or job = ? or age = ? ";
+        String sql2 = "select B.* "
+        		+ "from BOARD B, DRIVER D "
+        		+ "where B.driverId = D.driverId and B.driverId IN( select DRIVERID "
+        		+ "from DRIVER "
+        		+ "where gender = ? or job = ? or age = ? ) ";
         
         jdbcUtil.setSqlAndParameters(sql2, new Object[]{gender, job, age});  // JDBCUtil 에 query 및 파라미터 설
         
-        try { 
-              ResultSet rs = jdbcUtil.executeQuery();  
-              
-              while (rs.next()) {   
-                 driver = new DriverDTO( 
-                       rs.getInt("driverId"));
-                 driverList.add(driver);
-                 }
-             } catch (Exception ex) {
-                 ex.printStackTrace();
-             } finally {
-                 jdbcUtil.close();    // ResultSet, PreparedStatement, Connection 반환
-             }
-        
-        String sql3 = "SELECT * "
-                + "FROM BOARD "
-                + "WHERE DRIVERID = ? ";
-          
-          jdbcUtil.setSqlAndParameters(sql3, new Object[]{driver.getDriverId()});  // JDBCUtil 에 query 및 파라미터 설
-          
           try { 
                 ResultSet rs = jdbcUtil.executeQuery();  
                 
@@ -198,7 +179,7 @@ public class MatchingDAO {
                    board = new Board( 
                          rs.getInt("driverId"),
                          rs.getString("arrival"),
-                         rs.getString("depature"),
+                         rs.getString("departure"),
                          rs.getString("arrivalTime"),
                          rs.getString("departureTime"),
                          rs.getString("carShareDate"),

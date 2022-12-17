@@ -16,6 +16,7 @@ public class StationDTO {
 		X = x;
 		Y = y;
 	}
+
 	public int getStationId() {
 		return stationId;
 	}
@@ -28,6 +29,7 @@ public class StationDTO {
 	public void setStationName(int stationName) {
 		this.stationName = stationName;
 	}
+
 	public float getX() {
 		return X;
 	}
@@ -39,5 +41,6 @@ public class StationDTO {
 	}
 	public void setY(float Y) {
 		this.Y = Y;
+
 	}
 }

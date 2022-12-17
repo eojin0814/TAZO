@@ -74,7 +74,13 @@ function deleteBoard(targetUri){
                                         <div class="fw-bold">board Id : ${board.boardId }</div>
                                         <p>
                                         <span>${board.departure } -> ${board.arrival }</span>
+<<<<<<< HEAD
                                   	
+=======
+                                  		<a href="<c:url value='/board/update'>
+										      <c:param name='boardId' value='${board.boardId }'/>
+										</c:url>" class="nav-link">¼öÁ¤</a>
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
                                        </div>
                                 </div>
                                 </c:forEach>

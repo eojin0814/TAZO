@@ -56,6 +56,7 @@ public class MatchingDAO {
       List<StationDTO> StationListarrival = new ArrayList<StationDTO>();
       StationDTO StationDTOarrival = null;
       StationDTO StationDTOdeparture = null;
+      Board board1 = null;
       String sql = "SELECT DRIVERID, ARRIVAL, DEPARTURE, ARRIVALTIME, DEPARTURETIME,  CARSHAREDATE, HEADCOUNT, CURRENTHEADCOUNT   "
                  + "FROM BOARD "
                   + "WHERE ARRIVAL = ? or DEPARTURE = ? ";
@@ -63,7 +64,7 @@ public class MatchingDAO {
        try {      
                ResultSet rs = jdbcUtil.executeQuery();
                while (rs.next()) {   
-                      board = new Board( 
+                      board1 = new Board( 
                             rs.getInt("driverId"),
                             rs.getString("arrival"),
                             rs.getString("departure"),
@@ -72,13 +73,14 @@ public class MatchingDAO {
                             rs.getString("carShareDate"),
                             rs.getInt("headCount"),
                             rs.getInt("currentheadcount"));
-                      boardList.add(board);
+                      boardList.add(board1);
                      }
              } catch (Exception ex) {
                  ex.printStackTrace();
              } finally {
                  jdbcUtil.close();    
              }
+
        //1)출발지 주변역 검색 x,y좌표
        String sql1 = "SELECT X, Y "
                 + "FROM STATION "
@@ -126,7 +128,7 @@ public class MatchingDAO {
 		         }
        
       return boardList;
-      
+
       } 
    public List<Board> FindBasicMatching(String userId) {//job, gender, age기반 추천매칭
       
@@ -143,12 +145,13 @@ public class MatchingDAO {
         String sql = "SELECT gender, job, age "
               + "FROM CUSTOMER "
                + "WHERE CUSTOMERID = ? ";
-        
-        jdbcUtil.setSqlAndParameters(sql, new Object[]{"bin"});  
+
+        jdbcUtil.setSqlAndParameters(sql, new Object[]{userId});  
+
         try {      
             ResultSet rs = jdbcUtil.executeQuery();
 
-              while (rs.next()) {  
+              while (rs.next()) { 
               customer = new CustomerDTO( 
                     rs.getInt("gender"),
                     rs.getInt("age"),
@@ -164,6 +167,7 @@ public class MatchingDAO {
         int gender = customer.getGender();
         int job = customer.getJob();
         
+
         String sql2 = "select B.* "
         		+ "from BOARD B, DRIVER D "
         		+ "where B.driverId = D.driverId and B.driverId IN( select DRIVERID "
@@ -171,7 +175,7 @@ public class MatchingDAO {
         		+ "where gender = ? or job = ? or age = ? ) ";
         
         jdbcUtil.setSqlAndParameters(sql2, new Object[]{gender, job, age});  // JDBCUtil 에 query 및 파라미터 설
-        
+    
           try { 
                 ResultSet rs = jdbcUtil.executeQuery();  
                 

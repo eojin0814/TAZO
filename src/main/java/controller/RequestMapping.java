@@ -26,6 +26,13 @@ public class RequestMapping {
     public void initMapping() {
     	
     	//board
+
+    	//승지 추가
+    	//업데이트 페이지에서 넘어가는 페이지
+    	
+    	mappings.put("/board/update", new ForwardController("/driver/updateBoard.jsp"));
+    	mappings.put("/driver/update/board",new UpdateBoardController());
+    	
     	//board에 댓글 단거 처리하기
     	mappings.put("/board/comment", new SendBoardCommentController());
     	//운전자로 등록하기
@@ -41,20 +48,31 @@ public class RequestMapping {
     	mappings.put("/driver/myBoards", new ShowBoardsController());
     	//내 보드에서 수락하기
     	mappings.put("/board/allow", new AllowRequestController());
+
     	mappings.put("/board/update", new UpdateBoardController());
     	//board 클릭시 넘어가는 예약페이지
     	mappings.put("/reservation/view/init",  new SetReservationDetails());
+
+    	//board 클릭시 넘어가는 예약페이지
+    	mappings.put("/reservation/view/init",  new SetReservationDetails());
+    	//예약신청
+
     	mappings.put("/customer/reservation/submit", new CreateReservationController());
     	//내 예약정보 눌렀을 경우 넘어가는 controller
     	mappings.put("/customer/reservation/Info", new ListReservationController());
     	//로그인 클릭시 넘어가는 페이지
     	mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
     	//검색창에 검색한 결과 보여주는 페이지
+
     	mappings.put("/customer/LocationMatching", new MatchingLocationController());
     	mappings.put("/customer/BasicMatching", new MatchingBasicController());
     	//로케이션 포워드 
     	mappings.put("/customer/locationMatching/Info", new ForwardController("/LocationMatching.jsp"));
-    	 
+
+    	 mappings.put("/customer/LocationMatching", new MatchingLocationController());
+    	//로케이션 포워드 
+    	 mappings.put("/customer/locationMatching/Info", new ForwardController("/LocationMatching.jsp"));
+
     	mappings.put("/customer/login", new CustomerLoginController());
     	mappings.put("/customer/logout", new CustomerLogoutController());
     	

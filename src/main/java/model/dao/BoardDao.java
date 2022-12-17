@@ -18,6 +18,10 @@ import model.Reservation;
 import model.ReservationDTO;
 import model.User;
 import model.BoardDTO;
+<<<<<<< HEAD
+=======
+import model.BoardForUpdate;
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
 import model.CommentDTO;
 
 public class BoardDao {
@@ -43,6 +47,19 @@ public class BoardDao {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
+
+	//승지
+		public int updateBoard(BoardForUpdate board) {
+			System.out.println("select one");
+			SqlSession sqlSession = sqlSessionFactory.openSession();
+			try {
+				return (int)sqlSession.selectOne(
+						namespace + ".updateBoard", board);	
+			} finally {
+				sqlSession.close();
+			}
+		}
+
 //	
 //	public List<BoardDTO> selectAll() {
 //		System.out.println("selectAll");
@@ -232,8 +249,10 @@ public class BoardDao {
 	//comment초기에 보드 아이디로 페이지 들어가면 보여줄 댓글 창
 	public List<CommentDTO> findCommentByBoardId(int boardId) throws SQLException {
 		System.out.println("dao.findcommentByBoardId 들어옴");
-		String sql = "select c.commentid, c.boardid, c.details, u.name, u.customerid from comm c,"
-				+ " customer u where c.customerid = u.customerid and c.boardid = ?";	
+
+
+		String sql = "select c.commentid, c.boardid, c.details, u.name, u.customerid from comm c, customer u where c.customerid = u.customerid and c.boardid = ?";	
+
 		Object[] param = new Object[] {boardId};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				

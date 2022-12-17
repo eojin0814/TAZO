@@ -5,17 +5,29 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<<<<<<< HEAD
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+=======
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
  <meta name="description" content="" />
  <meta name="author" content="" />
  <title>Blog Post - Start Bootstrap Template</title>
+<<<<<<< HEAD
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
  
    
  <!-- Core theme CSS (includes Bootstrap)-->
+=======
+ <!-- Favicon-->
+ <!-- Core theme CSS (includes Bootstrap)-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
  <link href="${pageContext.request.contextPath }/cssForComment/styles.css" rel="stylesheet" />
 </head>
 
@@ -23,11 +35,16 @@
 <script src="${pageContext.request.contextPath }/js/focus-trap.js" defer></script>
 <script>
 function sendComment(targetUri){	
+<<<<<<< HEAD
+=======
+	alert(targetUri);
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
 	 document.frm.action = targetUri;
 	  document.frm.method = "post";
 	  document.frm.submit();
 	}
 </script>
+<<<<<<< HEAD
   <script>        
            $(document).ready(function() {
                $("#modal_show").click(function() {
@@ -44,6 +61,8 @@ function sendComment(targetUri){
                });
            });
         </script>
+=======
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
     <%request.setCharacterEncoding("EUC-KR");
     	
     %>
@@ -74,9 +93,16 @@ function sendComment(targetUri){
                             <div class="card-body">
                                 <!-- Comment form-->
                                 <form class="mb-4" name="frm">
+<<<<<<< HEAD
                          		<input type="hidden" name="boardId" value="${board.boardId }">
                                 <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" id="comment" name="comment"></textarea></form>
                                	<button onClick="sendComment('<c:url value='/board/comment'></c:url>')">버튼</button>
+=======
+                         		<input type="hidden" name="boardId" value="${boardId }">
+                                <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" id="comment" name="comment"></textarea></form>
+                               	<button onClick="sendComment('<c:url value='/board/comment'></c:url>')">버튼</button>
+                               	
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
                                 <!-- Comment with nested comments-->
                                 <!-- Single comment-->
                                 <p>
@@ -124,6 +150,7 @@ function sendComment(targetUri){
                                     </ul>
                                    <div>
                                     <!-- Button trigger modal -->
+<<<<<<< HEAD
                             <!-- Button trigger modal -->
     	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
  		카풀 이용하기
@@ -173,6 +200,56 @@ function sendComment(targetUri){
         });
     </script>
       
+=======
+                                    
+                           	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+					 		카풀 이용하기
+							</button>
+							 
+							<!-- class를 통해 모달을 선언하고 투명에서 밝아지는 효과(fade)를 준다. 여기서 가장 중요한거는 id 입니다. 위에 타겟과 동일해야 합니다. #은 아이디 .은 클래스 -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<!-- class를 주목하시면  여기 클레스에 modal-lg, modal-sm을 입력하시면 스몰 모달, 라지 모달로 선언이 가능 합니다. -->
+							<!-- 위에 설명 예 : <div class="modal-dialog modal-sm" role="document"> -->
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							       <!-- 모달 이름 -->
+							        <h5 class="modal-title" id="exampleModalLabel">이용 정보가 맞으신가요?</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							         <li>보드 id : ${board.boardId}</li>
+							         <li>출발 시간 : ${board.departureTime}</li>
+							         <li>도착 시간 : ${board.arrivalTime}</li>
+							         <li>인원 수 : ${board.headCount}</li>
+							      </div>
+							      <div class="modal-footer">
+							        <!-- data-dismiss="modal"를 통해 모달을 닫을수 있다. -->
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							        
+							        <button type="button" class="btn btn-primary" id="reservation"  onClick="location.href='/customer/reservation/submit'">신청하기</button>
+							        
+							      </div>
+							    </div>
+							  </div>
+							</div>
+				  <script>
+				        $(document).ready(function() {
+				            $("#modal_show").click(function() {
+				                $("#exampleModal").modal("show");
+				            });
+				 
+				            $("#close_modal").click(function() {
+				                $("#exampleModal").modal("hide");
+				            });
+				            $("#reservation").click(function() {
+				            	window.location = '/TAZO/customer/reservation/submit';
+				            });
+				        });
+				    </script>
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>

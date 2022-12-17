@@ -8,6 +8,10 @@
 		<typeAlias type="model.Board" alias="Board" />
 		<typeAlias type="model.DriverDTO" alias="DriverDTO" />
 		<typeAlias type="model.CommentDTO" alias="CommentDTO" />
+<<<<<<< HEAD
+=======
+		<typeAlias type="model.BoardForUpdate" alias="BoardForUpdate" />
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
 <head>
 <meta charset="EUC-KR">
     <meta charset="utf-8">
@@ -82,7 +85,11 @@
 
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+<<<<<<< HEAD
                 <a href="<c:url value='/'/>" class="navbar-brand p-0">
+=======
+                <a href="index.html" class="navbar-brand p-0">
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
                     <h1 class="m-0">TAZO</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>

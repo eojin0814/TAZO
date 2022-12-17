@@ -105,6 +105,7 @@ function register(targetUri){
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="<c:url value='/'/>" class="navbar-brand p-0">
+                <a href="index.html" class="navbar-brand p-0">
                     <h1 class="m-0">TAZO</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -113,10 +114,10 @@ function register(targetUri){
                 </button>
                 <<div class="collapse navbar-collapse" id="navbarCollapse">
                <div class="navbar-nav ms-auto py-0">
-                  <a href="<c:url value='/driver'/>" class="nav-item nav-link active">Home</a> <a
-                     href="<c:url value='/customer/locationMatching/Info'/>" class="nav-item nav-link">내 카플</a> 
-                     <a href="<c:url value='/customer/reservation/Info'/>"
-                     class="nav-item nav-link">예약 정보</a>
+
+                  <a href="<c:url value='/driver'/>" class="nav-item nav-link active">Home</a> 
+                  <a href="<c:url value='/customer/locationMatching/Info'/>" class="nav-item nav-link">내 카플</a> 
+                  <a href="<c:url value='/customer/reservation/Info'/>" class="nav-item nav-link">예약 정보</a>
                   <div class="nav-item dropdown">
                      <a href="#" class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown">Pages</a>
@@ -208,9 +209,66 @@ function register(targetUri){
           })
         </script>
         
+
+      <div class="container-xxl py-6 bg-white">
+         <div class="container bg-white">
+            <h2>타조 추천</h2>
+         </div>
+         
+         <div id='ex1' class="carousel slide" data-bs-ride="carousel" > 
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                     <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+                    <span>출발시간 : ${board.departureTime}</span>
+                    <span>도착시간 : ${board.arrivalTime}</span>
+                    <span>탐승 가능 인원 수 : ${board.headCount }</span>
+               </div>
+               <div class="carousel-item">
+                       <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+                    <span>출발시간 : ${board.departureTime}</span>
+                    <span>도착시간 : ${board.arrivalTime}</span>
+                    <span>탐승 가능 인원 수 : ${board.headCount }</span>
+                </div>
+                <div class="carousel-item">
+                       <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+                    <span>출발시간 : ${board.departureTime}</span>
+                    <span>도착시간 : ${board.arrivalTime}</span>
+                    <span>탐승 가능 인원 수 : ${board.headCount }</span>
+                </div>
+                <div class="carousel-item">
+                       <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+                    <span>출발시간 : ${board.departureTime}</span>
+                    <span>도착시간 : ${board.arrivalTime}</span>
+                    <span>탐승 가능 인원 수 : ${board.headCount }</span>
+                </div>
+                <div class="carousel-item">
+                       <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+                    <span>출발시간 : ${board.departureTime}</span>
+                    <span>도착시간 : ${board.arrivalTime}</span>
+                    <span>탐승 가능 인원 수 : ${board.headCount }</span>
+                </div>
+                <div class="carousel-item">
+                       <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+                    <span>출발시간 : ${board.departureTime}</span>
+                    <span>도착시간 : ${board.arrivalTime}</span>
+                    <span>탐승 가능 인원 수 : ${board.headCount }</span>
+                </div>
+            </div> 
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                   <span class="visually-hidden">Previous</span>
+                 </button>
+                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                   <span class="visually-hidden">Next</span>
+                 </button>
+         </div>
+      </div>
         
-     
-     
+
+
+
+       
         <!-- Service Start -->
         <div class="container-xxl py-6">
             <div class="container">
@@ -250,11 +308,6 @@ function register(targetUri){
         </div>
         <!-- Service End -->
 
-
-       
-
-    
-        <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 

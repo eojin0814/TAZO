@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko-kr">
 <head>

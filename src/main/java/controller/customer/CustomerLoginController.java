@@ -34,7 +34,11 @@ public class CustomerLoginController implements Controller{
          HttpSession session = request.getSession();
          session.setAttribute("userId", userId);
          
+<<<<<<< HEAD
          return "/index.jsp";         
+=======
+         return "redirect:/driver";         
+>>>>>>> 8e2187431c157bbfdd323f8693eb0cbb3294c2b1
       } catch (Exception e) {
          /* UserNotFoundException이나 PasswordMismatchException 발생 시
           * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력

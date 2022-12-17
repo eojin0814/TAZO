@@ -2,6 +2,8 @@ package model.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,12 +51,15 @@ public class MatchingDAO {
        // 도착지 또는 출발지가 같은 경우 
       // 경유지가 포함되는 경우 
       List<Board> boardList = new ArrayList<Board>();
-        Board board = null;
-        
+      Board board = null;
+      List<StationDTO> StationListdeparture = new ArrayList<StationDTO>();
+      List<StationDTO> StationListarrival = new ArrayList<StationDTO>();
+      StationDTO StationDTOarrival = null;
+      StationDTO StationDTOdeparture = null;
       String sql = "SELECT DRIVERID, ARRIVAL, DEPARTURE, ARRIVALTIME, DEPARTURETIME,  CARSHAREDATE, HEADCOUNT, CURRENTHEADCOUNT   "
                  + "FROM BOARD "
-                  + "WHERE ARRIVAL = ? or DEPARTURE = ? or BOARDID = ? ";
-      jdbcUtil.setSqlAndParameters(sql, new Object[]{arrival,depature,24});  
+                  + "WHERE ARRIVAL = ? or DEPARTURE = ? ";
+      jdbcUtil.setSqlAndParameters(sql, new Object[]{arrival,depature});  
        try {      
                ResultSet rs = jdbcUtil.executeQuery();
                while (rs.next()) {   
@@ -74,7 +79,54 @@ public class MatchingDAO {
              } finally {
                  jdbcUtil.close();    
              }
+       //1)출발지 주변역 검색 x,y좌표
+       String sql1 = "SELECT X, Y "
+                + "FROM STATION "
+                + "WHERE STATIONNAME = ? ";
+       jdbcUtil.setSqlAndParameters(sql1, new Object[]{"수유"});  
+       try {      
+             ResultSet rs = jdbcUtil.executeQuery();
+             while (rs.next()) {   
+            	 StationDTOarrival = new StationDTO( 
+                          rs.getFloat("Y"),
+                          rs.getFloat("X"));
+                   }
+             float arrivalY = StationDTOarrival.getY();
+             float arrivalX = StationDTOarrival.getX();
+             
+             //1)도착지 주변역 검색하기 위한 x,y좌표
+             String sql2 = "SELECT X, Y "
+               + "FROM STATION "
+               + "WHERE STATIONNAME = ? ";
+             jdbcUtil.setSqlAndParameters(sql2, new Object[]{"월곡"});  
+    
+             rs = jdbcUtil.executeQuery();
+             while (rs.next()) {   
+           	 StationDTOdeparture = new StationDTO( 
+                         rs.getFloat("Y"),
+                         rs.getFloat("X"));
+           
+                  }
+            float departureY = StationDTOdeparture.getY();
+            float departureX = StationDTOdeparture.getX();
+            String procedure = "{call DISTANCE_WGS84(?,?,?,?)} ";
+            float Y = arrivalY;
+            float X = arrivalX;
+            for (int i=0; i<3; i++) 
+            {
+            	jdbcUtil.setSqlAndParameters(procedure, new Object[]{arrivalY,arrivalX,Y+0.02, X+0.03});  
+            	rs = jdbcUtil.executeQuery();
+            	
+            }
+          
+              } catch (Exception ex) {
+		             ex.printStackTrace();
+		         } finally {
+		             jdbcUtil.close();    
+		         }
+       
       return boardList;
+      
       } 
    public List<Board> FindBasicMatching(String userId) {//job, gender, age기반 추천매칭
       

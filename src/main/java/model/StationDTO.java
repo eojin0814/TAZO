@@ -4,9 +4,18 @@ public class StationDTO {
 
 	private int stationId;
 	private int stationName;
-	private int latitudeX;
-	private int longititudeY;
+	private float X;
+	private float Y;
 	
+	public StationDTO(int stationName) {
+		super();
+		this.stationName = stationName;
+	}
+	public StationDTO(float x, float y) {
+		super();
+		X = x;
+		Y = y;
+	}
 	public int getStationId() {
 		return stationId;
 	}
@@ -19,16 +28,16 @@ public class StationDTO {
 	public void setStationName(int stationName) {
 		this.stationName = stationName;
 	}
-	public int getLatitudeX() {
-		return latitudeX;
+	public float getX() {
+		return X;
 	}
-	public void setLatitudeX(int latitudeX) {
-		this.latitudeX = latitudeX;
+	public void setX(float X) {
+		this.X = X;
 	}
-	public int getLongititudeY() {
-		return longititudeY;
+	public float getY() {
+		return Y;
 	}
-	public void setLongititudeY(int longititudeY) {
-		this.longititudeY = longititudeY;
+	public void setY(float Y) {
+		this.Y = Y;
 	}
 }

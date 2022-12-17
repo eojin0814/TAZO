@@ -30,10 +30,10 @@ public class MatchingBasicController implements Controller {
 		 	String userId = UserSessionUtils.getLoginUserId(request.getSession());		
 		 	// 유저 정보 넘겨주기
 	    	MatchingManager manager = MatchingManager.getInstance();
-			List<Board> boardList = manager.findBasicBoardList(userId);
+			List<Board> MatchingList = manager.findBasicBoardList(userId);
 			
 			// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
-			request.setAttribute("BoardList", boardList);				
-			return "/community/list.jsp";        
+			request.setAttribute("MatchingList", MatchingList);				
+			return "index.jsp";        
 	    }
 }
